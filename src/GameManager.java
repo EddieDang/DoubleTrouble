@@ -4,6 +4,9 @@ public class GameManager {
     private HashMap<String, Integer> board;
     private int turn;
 
+    /**
+     * Creates a game
+     */
     public GameManager() {
         this.board = new HashMap<>();
         this.board.put("Green", 3);
@@ -12,6 +15,11 @@ public class GameManager {
         this.turn = 1;
     }
 
+    /**
+     * Removes pieces from board
+     * @param color
+     * @param amount
+     */
     public void removePiece(String color, int amount){
         try{
             if(validateMove(color, amount)){
@@ -26,6 +34,14 @@ public class GameManager {
         }
     }
 
+    /**
+     * Checks if the move is legal
+     * If the chosen color has pieces that can be moved
+     * If the chosen color has >= than the amount that the player wants to remove
+     * @param color
+     * @param amount
+     * @return
+     */
     public boolean validateMove(String color, int amount){
         if(this.board.containsKey(color) && (amount <= this.board.get(color))){
             return true;
@@ -40,6 +56,9 @@ public class GameManager {
         this.turn = 2;
     }
 
+    /**
+     * Prints out the board
+     */
     public void printBoard(){
         this.board.forEach((key, value) -> System.out.println(key + ": " + value));
     }
